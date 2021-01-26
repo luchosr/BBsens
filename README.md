@@ -7,7 +7,7 @@
 
 
 ## Conectividad:
-- **Gateway [HTTP](https://github.com/iot2tangle/Raspberry-SenseHat/tree/main/http)** (WiFi will post a request with the data to a given server).
+- **Gateway [HTTP](https://github.com/iot2tangle/Streams-http-gateway)** (WiFi will post a request with the data to a given server).
 - **Script [DHT11](https://github.com/iot2tangle/Raspberry-SenseHat/tree/main/http)** (WiFi will post a request with the data to a given server).
 
 

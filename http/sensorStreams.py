@@ -1,15 +1,13 @@
 from collections import OrderedDict
+from mq import *
+import sys
 import time
 import config
 import requests
 import json
+import barometric
 import Adafruit_DHT
 
-# Set sensor type : Options are DHT11,DHT22 or AM2302
-sensor = Adafruit_DHT.DHT11
-
-# Set GPIO sensor is connected to
-gpio = 17
 
 # Use read_retry method. This will retry up to 15 times to
 # get a sensor reading (waiting 2 seconds between each retry).
@@ -20,9 +18,6 @@ while True:
     # Get Unix timestamp
     timestamp = int(time.time())
 
-    # Get Temp/Press/Hum values
-    humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
-
     # Json open
     build_json = {
         "iot2tangle": [],
@@ -32,12 +27,51 @@ while True:
 
     # If Enviromental
     if config.dht11:
+        # Set sensor type : Options are DHT11,DHT22 or AM2302
+        sensor = Adafruit_DHT.DHT11
+        # Set GPIO sensor is connected to
+        gpio = 17
+        # Get Temp/Press/Hum values
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
         build_json['iot2tangle'].append({
             "sensor": "DHT11-environmental",
             "data": [{
                 "Temp": str(temperature)
             }, {
                 "Humidity": str(humidity)
+            }]
+        })
+    if config.mq135:
+        # Set sensor type : Options are DHT11,DHT22 or AM2302
+        mq=MQ();
+        perc = mq.MQPercentage()
+
+      
+        build_json['iot2tangle'].append({
+            "sensor": "MQ135 - Smoke / Gases",
+            "data": [{
+                "Gas LPG": perc["GAS_LPG"]
+            }, {
+               "CO": perc["CO"]
+            }, {
+               "Smoke": perc["SMOKE"]
+            }]
+        })
+    
+    if config.bmp180:
+        # Get Temp/Press/Altitude values
+        bmp = barometric.bmp180()
+        temp = bmp.get_temp()
+        press = bmp.get_pressure()
+        altitude = bmp.get_altitude()
+
+        build_json['iot2tangle'].append({
+            "sensor": "BMP180-Enviromental",
+            "data": [{
+                "Pressure": str(press),
+                "Temp": str(temp)
+            },{
+                "Altitude": str(altitude)
             }]
         })
 
