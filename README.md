@@ -35,4 +35,4 @@ endpoint = 'http://127.0.0.1:8080/sensor_data'
 
 
 - Posteriormente ejecutamos `python sensorStreams.py`.
-- En una terminal aparte ejecutamos el gateway que nos conectará a la Tangle.
+- En una terminal aparte ejecutamos el **[Gateway](https://github.com/iot2tangle/Streams-http-gateway)** que nos conectará a la Tangle.
