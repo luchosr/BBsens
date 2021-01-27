@@ -7,7 +7,7 @@
 """
 
 from collections import OrderedDict
-from mq import *
+#from mq import *
 import sys
 import time
 import config
