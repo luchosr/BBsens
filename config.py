@@ -10,7 +10,7 @@
 # The Device name is the concatenation of the result : cat /proc/cpuinfo
 # Hardware-Serial-Revision
 
-device_id = 'BCM2835-00000000ec2a41ff-9000c1'
+device_id = 'DHT11'
 
 # Parameters : Sensors
 # Select sensors to use 1 = use | 0 = skip
