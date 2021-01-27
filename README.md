@@ -27,6 +27,7 @@ Desarrollar un script en lenguaje python que sea versátil y fácil de configura
 2) **Cableado de sensores:** correspondiente como se encuentra en las instrucciones de la carpeta [Wiring](https://vassgit.vass.es/root/iot2tangle_raspberry/-/tree/master/wiring).
    - Distribución de pines de [raspberry GPIO](https://elementztechblog.files.wordpress.com/2016/05/gpio.png)
     
+    
 3) **Instalación de entorno python de trabajo:**
      - [Python Wiki](https://vassgit.vass.es/root/CROSS-ARCH_iota_poc/-/wikis/python).
 4)  **Configuración de Streams Gateway** para transaccionar datos a la Tangle de IOTA:
