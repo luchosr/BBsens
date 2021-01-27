@@ -1,18 +1,23 @@
-from collections import OrderedDict
-from mq import *
-import sys
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+@name: config.py - Configuration File
+@disclaimer: Copyright 2020, VASS GROUP - Delivery Cross - Tech Brewery
+@lastrelease:  26/01/2021 00:00
+"""
+
 import time
 import config
 import requests
 import json
-import barometric
-import Adafruit_DHT
 
+# Import the libraries for each sensor
+from sensors.bmp180 import BMP180
+from sensors.dth11 import DTH11
+from sensors.mq135 import MQ135
 
 # Use read_retry method. This will retry up to 15 times to
 # get a sensor reading (waiting 2 seconds between each retry).
-
-
 while True:
 
     # Get Unix timestamp
@@ -25,53 +30,38 @@ while True:
         "timestamp": str(timestamp)
     }
 
-    # If Enviromental
-    if config.dht11:
-        # Set sensor type : Options are DHT11,DHT22 or AM2302
-        sensor = Adafruit_DHT.DHT11
-        # Set GPIO sensor is connected to
-        gpio = 17
-        # Get Temp/Press/Hum values
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
+    # If DHT11
+    if config.dth11:
+        sensor = DTH11()
         build_json['iot2tangle'].append({
-            "sensor": "DHT11-environmental",
+            "sensor": "DHT11 - Environmental",
             "data": [{
-                "Temp": str(temperature)
+                "Temp": str(sensor.get_temperature())
             }, {
-                "Humidity": str(humidity)
+                "Humidity": str(sensor.get_humidity())
             }]
         })
+
+    # If MQ135
     if config.mq135:
-        # Set sensor type : Options are DHT11,DHT22 or AM2302
-        mq=MQ();
-        perc = mq.MQPercentage()
-
-      
+        sensor = MQ135()
         build_json['iot2tangle'].append({
-            "sensor": "MQ135 - Smoke / Gases",
+            "sensor": "MQ135 - Enviromental",
             "data": [{
-                "Gas LPG": perc["GAS_LPG"]
-            }, {
-               "CO": perc["CO"]
-            }, {
-               "Smoke": perc["SMOKE"]
+                "PPM": str(sensor.get_ppm())
             }]
         })
-    
-    if config.bmp180:
-        # Get Temp/Press/Altitude values
-        bmp = barometric.bmp180()
-        temp = bmp.get_temp()
-        press = bmp.get_pressure()
-        altitude = bmp.get_altitude()
 
+    # If BMP180
+    if config.bmp180:
+        sensor = BMP180()
         build_json['iot2tangle'].append({
             "sensor": "BMP180-Enviromental",
             "data": [{
-                "Pressure": str(press),
-                "Temp": str(temp)
+                "Pressure": str(sensor.get_pressure()),
+                "Temp": str(sensor.get_temperature())
             },{
-                "Altitude": str(altitude)
+                "Altitude": str(sensor.get_altitude())
             }]
         })
 

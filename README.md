@@ -1,16 +1,36 @@
-# Transaccionar a IOTA Tangle desde Raspberry pi usando sensores:
-- DHT11: Temperatura y humedad.
-- MQ135: Sensor ambiental de gases.
-- BMP180: Sensor barométrico.
+# P.o.C. Raspie to Tangle.
+
+## Propósito
+Desarrollar un script en lenguaje python que sea versátil y fácil de configurar para soportar varios dispositivos de sensado a partir de una computadora de placa reducida [Raspberry Pi](https://es.wikipedia.org/wiki/Raspberry_Pi) y transaccionar los datos a la red Tangle de [IOTA](https://es.wikipedia.org/wiki/IOTA_(protocolo)).
+
+
+![](./img/streams.png)
+
+
+### Hardware necesario
+- Raspberry pi zero w
+- Protoboard
+- Conversor MCP3008
+- Sensores:
+  - DHT11: Temperatura y humedad.
+  - MQ135: Sensor ambiental de gases.
+  - BMP180: Sensor barométrico.
 
 
 
 
-## Instrucciones:
-- Realizar el cableado acorde al sensor correspondiente como se encuetra en las instrucciones de la carpeta [Wiring](https://vassgit.vass.es/root/iot2tangle_raspberry/-/tree/master/http/Wiring).
+### Descripción:
+
+1) **Configuración de Raspberry pi zero W:**
+     - [Remota usando Wifi](https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows).
+     - [Usando interfaz gráfica via USB](https://www.circuitbasics.com/access-raspberry-pi-desktop-remote-connection/).
+2) **Configuración de cableado de sensores:** correspondiente como se encuentra en las instrucciones de la carpeta [Wiring](https://vassgit.vass.es/root/iot2tangle_raspberry/-/tree/master/http/Wiring).
+- Configuración de entorno python de trabajo.
+  - [Python Wiki](https://vassgit.vass.es/root/CROSS-ARCH_iota_poc/-/wikis/python).
 - Utilizaremos un **Gateway [HTTP](https://github.com/iot2tangle/Streams-http-gateway)** para transaccionar datos a la Tangle de IOTA.
 - Dentro del directorio **http** existe un archivo **config.py**, en él indicar el ID del dispositivo y seleccionar con un **1** el sensor determinado a utilizar, y con **0** los restantes, seleccionamos el intervalo de relé y definimos el endpoint a donde queremos apuntar el sensado.
 - Ejemplo:
+  
 ````
 # Device name
 device_id = 'DHT11'

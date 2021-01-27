@@ -1,3 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+@name: bmp180.py - BMP180
+@disclaimer: Copyright 2020, VASS GROUP - Delivery Cross - Tech Brewery
+@lastrelease:  26/01/2021 00:00
+"""
+
 """
 This program handles the communication over I2C between a Raspberry Pi and a
 BMP180 Temperature/Pressure sensor.
@@ -10,7 +18,7 @@ import smbus
 import math
 from time import sleep
 
-class bmp180(object):
+class BMP180(object):
     # Global variables
     address = 0x77
     bus = smbus.SMBus(1)
@@ -45,7 +53,6 @@ class bmp180(object):
     calMB = 0
     calMC = 0
     calMD = 0
-
 
     def __init__(self):
         # Get the calibration data from the BMP180
@@ -127,7 +134,8 @@ class bmp180(object):
 
         return raw_data
 
-    def get_temp(self):
+    # Getter for Temperature
+    def get_temperature(self):
         """Reads the raw temperature and calculates the actual temperature.
 
         The calculations used to get the actual temperature are from the BMP-180
@@ -148,6 +156,7 @@ class bmp180(object):
 
         return actual_temp
 
+    # Getter for Pressure
     def get_pressure(self):
         """Reads and calculates the actual pressure.
 
@@ -197,6 +206,7 @@ class bmp180(object):
 
         return pressure
 
+    # Getter for Altitude
     def get_altitude(self, sea_level_pressure = 101325):
         """Calulates the altitude.
 
@@ -215,3 +225,6 @@ class bmp180(object):
         altitude = 1000 * (44330.0 * (1.0 - math.pow(pressure / sea_level_pressure, 0.00019029495)))
 
         return altitude
+
+    # TODO :  def get_read(self):
+    # This method return a JSON with all the indicators
