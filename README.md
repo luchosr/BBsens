@@ -25,12 +25,14 @@ Desarrollar un script en lenguaje python que sea versátil y fácil de configura
      - [Remota usando Wifi](https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows).
      - [Usando interfaz gráfica via USB](https://www.circuitbasics.com/access-raspberry-pi-desktop-remote-connection/).
 2) **Cableado de sensores:** correspondiente como se encuentra en las instrucciones de la carpeta [Wiring](https://vassgit.vass.es/root/iot2tangle_raspberry/-/tree/master/wiring).
+   - Distribución de pines de [raspberry GPIO](https://elementztechblog.files.wordpress.com/2016/05/gpio.png)
+    
 3) **Instalación de entorno python de trabajo:**
      - [Python Wiki](https://vassgit.vass.es/root/CROSS-ARCH_iota_poc/-/wikis/python).
 4)  **Configuración de Streams Gateway** para transaccionar datos a la Tangle de IOTA:
     - [Streams Gateway HTTP](https://github.com/iot2tangle/Streams-http-gateway).
     - Es importante que en el archivo `config.json` agregemos el *ID de nuestro dispositivo* a la lista blanca.
-   5) **Configuración de Script para enviar datos de diferentes sensores:**
+   1) **Configuración de Script para enviar datos de diferentes sensores:**
          - Modificar el archivo ``config.py``, en él indicar el *ID del dispositivo* y seleccionar con un **1** el sensor determinado a utilizar, y con **0** los restantes.
         - Seleccionamos el *intervalo de relé* y definimos el *endpoint* a donde queremos apuntar el sensado.
        - Ejemplo:
@@ -54,9 +56,8 @@ Desarrollar un script en lenguaje python que sea versátil y fácil de configura
         relay = 30
 
         # Define endpoint
-        endpoint = 'http://127.0.0.1:8080/sensor_data'
+        endpoint = 'http://127.0.0.1:8080/sensor_data' ````
 
-        ````
 
 
 - Posteriormente ejecutamos `python sensorStreams.py`.
