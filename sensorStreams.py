@@ -6,14 +6,19 @@
 @lastrelease:  26/01/2021 00:00
 """
 
+from collections import OrderedDict
+from mq import *
+import sys
 import time
 import config
 import requests
 import json
+import barometric
+import Adafruit_DHT
 
 # Import the libraries for each sensor
 #from sensors.bmp180 import BMP180
-from sensors.dht11 import DTH11
+#from sensors.dht11 import DTH11
 #from sensors.mq135 import MQ135
 
 # Use read_retry method. This will retry up to 15 times to
