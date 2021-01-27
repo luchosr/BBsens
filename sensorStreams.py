@@ -12,9 +12,9 @@ import requests
 import json
 
 # Import the libraries for each sensor
-from sensors.bmp180 import BMP180
+#from sensors.bmp180 import BMP180
 from sensors.dth11 import DTH11
-from sensors.mq135 import MQ135
+#from sensors.mq135 import MQ135
 
 # Use read_retry method. This will retry up to 15 times to
 # get a sensor reading (waiting 2 seconds between each retry).
