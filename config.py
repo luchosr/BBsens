@@ -29,7 +29,7 @@ magnetometer = 0
 
 # Parameters : Relay
 # Select relay interval in miliseconds
-relay = 180
+relay = 15
 
 # Parameter : endpoint
 # Define endpoint for the Rust Stream Gateway
