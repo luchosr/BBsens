@@ -17,7 +17,7 @@ import json
 import Adafruit_DHT
 
 # Import the libraries for each sensor
-from sensors.bmp180 import BMP180
+from sensors.bmp180.py import BMP180
 #from sensors.dht11 import DTH11
 #from sensors.mq135 import MQ135
 
