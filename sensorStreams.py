@@ -17,7 +17,7 @@ import json
 import Adafruit_DHT
 
 # Import the libraries for each sensor
-from sensors.bmp180.py import BMP180
+#from sensors.bmp180 import BMP180
 #from sensors.dht11 import DTH11
 #from sensors.mq135 import MQ135
 
@@ -58,7 +58,7 @@ while True:
         })
 
     # If BMP180
-    if config.bmp180:
+"""     if config.bmp180:
         sensor = BMP180()
         build_json['iot2tangle'].append({
             "sensor": "BMP180-Enviromental",
@@ -68,7 +68,7 @@ while True:
             },{
                 "Altitude": str(sensor.get_altitude())
             }]
-        })
+        }) """
 
     # Set Json headers
     headers = {"Content-Type": "application/json"}
