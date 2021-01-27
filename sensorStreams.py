@@ -37,7 +37,10 @@ while True:
 
     # If DHT11
     if config.dth11:
-        sensor = DTH11()
+        sensor = Adafruit_DHT.DHT11
+        gpio = 17
+        # Get Temp/Press/Hum values
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
         build_json['iot2tangle'].append({
             "sensor": "DHT11 - Environmental",
             "data": [{
