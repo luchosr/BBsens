@@ -59,6 +59,22 @@ while True:
                 "PPM": str(sensor.get_ppm())
             }]
         })
+        
+    # If BMP180
+    if config.bmp180:
+        sensor = BMP180()
+        build_json['iot2tangle'].append({
+            "sensor": "BMP180-Enviromental",
+            "data": [{
+                "Pressure": str(sensor.get_pressure()),
+                "Temp": str(sensor.get_temperature())
+            },{
+                "Altitude": str(sensor.get_altitude())
+            }]
+        })
+
+
+    
 
 
 

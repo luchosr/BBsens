@@ -10,7 +10,7 @@
 # The Device name is the concatenation of the result : cat /proc/cpuinfo
 # Hardware-Serial-Revision
 
-device_id = 'BMP180'
+device_id = 'DHT11'
 
 # Parameters : Sensors
 # Select sensors to use 1 = use | 0 = skip
@@ -18,8 +18,8 @@ device_id = 'BMP180'
 # BMP180 : Temperature,Pressure,Altitude
 # MQ135 : Air quality sensor based on SnO2 conductivity measurement
 # TODO : include in the documentation the unit of measure for each indicator
-dth11 = 0
-bmp180 = 1
+dth11 = 1
+bmp180 = 0
 mq135 = 0
 
 # TODO: next sensors to integrate
