@@ -18,7 +18,8 @@ import smbus
 import math
 from time import sleep
 
-class BMP180(object):
+#object
+class BMP180():
     # Global variables
     address = 0x77
     bus = smbus.SMBus(1)
