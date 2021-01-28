@@ -13,8 +13,8 @@ import time
 import config
 import requests
 import json
-import BMP180
 import Adafruit_DHT
+from sensors.bmp180.Adafruit_BMP085 import BMP085
 
 # Import the libraries for each sensor
 #from sensors.bmp180 import BMP180
@@ -62,14 +62,14 @@ while True:
         
     # If BMP180
     if config.bmp180:
-        sensor = BMP180()
+        bmp = BMP085(0x77)
         build_json['iot2tangle'].append({
             "sensor": "BMP180-Enviromental",
             "data": [{
-                "Pressure": str(sensor.get_pressure()),
-                "Temp": str(sensor.get_temperature())
+                "Pressure": str(bmp.readPressure()),
+                "Temp": str(bmp.readTemperature())
             },{
-                "Altitude": str(sensor.get_altitude())
+                "Altitude": str(bmp.readAltitude())
             }]
         })
 
