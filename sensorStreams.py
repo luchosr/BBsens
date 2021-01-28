@@ -13,7 +13,7 @@ import time
 import config
 import requests
 import json
-#import barometric
+from bmp180 import BMP180
 import Adafruit_DHT
 
 # Import the libraries for each sensor
