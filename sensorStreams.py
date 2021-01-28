@@ -14,7 +14,7 @@ import config
 import requests
 import json
 import Adafruit_DHT
-from sensors.bmp180.Adafruit_BMP085 import BMP085
+from sensors import *
 
 # Import the libraries for each sensor
 #from sensors.bmp180 import BMP180
