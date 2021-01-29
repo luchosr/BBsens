@@ -62,7 +62,6 @@ class BMP180(object):
 
     def read_signed_16_bit(self, register):
         """Reads a signed 16-bit value.
-
         register -- the register to read from.
         Returns the read value.
         """
@@ -76,7 +75,6 @@ class BMP180(object):
 
     def read_unsigned_16_bit(self, register):
         """Reads an unsigned 16-bit value.
-
         Reads the given register and the following, and combines them as an
         unsigned 16-bit value.
         register -- the register to read from.
@@ -137,7 +135,6 @@ class BMP180(object):
     # Getter for Temperature
     def get_temperature(self):
         """Reads the raw temperature and calculates the actual temperature.
-
         The calculations used to get the actual temperature are from the BMP-180
         datasheet.
         Returns the actual temperature in degrees Celcius.
@@ -159,7 +156,6 @@ class BMP180(object):
     # Getter for Pressure
     def get_pressure(self):
         """Reads and calculates the actual pressure.
-
         Returns the actual pressure in Pascal.
         """
         UP = self.get_raw_pressure()
@@ -209,13 +205,11 @@ class BMP180(object):
     # Getter for Altitude
     def get_altitude(self, sea_level_pressure = 101325):
         """Calulates the altitude.
-
         This method calculates the altitude using the pressure.
         This method is not reliable when the sensor is inside.
         sea_level_pressure -- the pressure at the sea level closest to you in
         Pascal.
         Returns the altitude in meters.
-
         !!! This method probably does not work correctly. I've tried to test
         it but at the moment I have no way of verifying the data. !!!
         """
