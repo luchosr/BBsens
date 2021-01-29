@@ -1,28 +1,16 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-"""
-@name: config.py - Configuration File
-@disclaimer: Copyright 2020, VASS GROUP - Delivery Cross - Tech Brewery
-@lastrelease:  26/01/2021 00:00
-"""
-
 from collections import OrderedDict
-#from mq import *
 import sys
 import time
 import config
 import requests
 import json
 import Adafruit_DHT
-from sensors import *
-
-# Import the libraries for each sensor
-#from sensors.bmp180 import BMP180
-#from sensors.dht11 import DTH11
-#from sensors.mq135 import MQ135
+from sensors.bmp180 import BMP180
 
 # Use read_retry method. This will retry up to 15 times to
 # get a sensor reading (waiting 2 seconds between each retry).
+
+
 while True:
 
     # Get Unix timestamp
@@ -35,9 +23,11 @@ while True:
         "timestamp": str(timestamp)
     }
 
-    # If DHT11
-    if config.dth11:
+    # If Enviromental
+    if config.dht11:
+        # Set sensor type : Options are DHT11,DHT22 or AM2302
         sensor = Adafruit_DHT.DHT11
+        # Set GPIO sensor is connected to
         gpio = 17
         # Get Temp/Press/Hum values
         humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
@@ -49,34 +39,34 @@ while True:
                 "Humidity": str(humidity)
             }]
         })
-
-    # If MQ135
     if config.mq135:
-        sensor = MQ135()
+        # Set sensor type : Options are DHT11,DHT22 or AM2302
+        mq=MQ();
+        perc = mq.MQPercentage()
+
+      
         build_json['iot2tangle'].append({
-            "sensor": "MQ135 - Enviromental",
+            "sensor": "MQ135 - Smoke / Gases",
             "data": [{
-                "PPM": str(sensor.get_ppm())
+                "Gas LPG": perc["GAS_LPG"]
+            }, {
+               "CO": perc["CO"]
+            }, {
+               "Smoke": perc["SMOKE"]
             }]
         })
-        
-    # If BMP180
+    
     if config.bmp180:
-        bmp = BMP085(0x77)
+        sensor = BMP180()
         build_json['iot2tangle'].append({
             "sensor": "BMP180-Enviromental",
             "data": [{
-                "Pressure": str(bmp.readPressure()),
-                "Temp": str(bmp.readTemperature())
+                "Pressure": str(sensor.get_pressure()),
+                "Temp": str(sensor.get_temperature())
             },{
-                "Altitude": str(bmp.readAltitude())
+                "Altitude": str(sensor.get_altitude())
             }]
         })
-
-
-    
-
-
 
     # Set Json headers
     headers = {"Content-Type": "application/json"}
