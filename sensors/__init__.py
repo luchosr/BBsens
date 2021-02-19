@@ -1,2 +1,2 @@
 
-from bmp180 import BMP180
+from bmp180.py import BMP180
