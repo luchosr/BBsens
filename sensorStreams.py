@@ -5,7 +5,7 @@ import config
 import requests
 import json
 import Adafruit_DHT
-from sensors.bmp180 import BMP180
+#from sensors.bmp180 import BMP180
 
 # Use read_retry method. This will retry up to 15 times to
 # get a sensor reading (waiting 2 seconds between each retry).
