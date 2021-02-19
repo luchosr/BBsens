@@ -5,7 +5,7 @@ import config
 import requests
 import json
 import Adafruit_DHT
-#from sensors.bmp180 import BMP180
+from sensors.bmp180 import BMP180
 
 # Use read_retry method. This will retry up to 15 times to
 # get a sensor reading (waiting 2 seconds between each retry).
@@ -56,7 +56,7 @@ while True:
             }]
         })
     
-"""     if config.bmp180:
+    if config.bmp180:
         sensor = BMP180()
         build_json['iot2tangle'].append({
             "sensor": "BMP180-Enviromental",
@@ -66,7 +66,7 @@ while True:
             },{
                 "Altitude": str(sensor.get_altitude())
             }]
-        }) """
+        })
 
     # Set Json headers
     headers = {"Content-Type": "application/json"}
