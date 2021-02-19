@@ -56,7 +56,7 @@ while True:
             }]
         })
     
-    if config.bmp180:
+"""     if config.bmp180:
         sensor = BMP180()
         build_json['iot2tangle'].append({
             "sensor": "BMP180-Enviromental",
@@ -66,7 +66,7 @@ while True:
             },{
                 "Altitude": str(sensor.get_altitude())
             }]
-        })
+        }) """
 
     # Set Json headers
     headers = {"Content-Type": "application/json"}
